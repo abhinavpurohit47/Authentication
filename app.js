@@ -6,12 +6,14 @@ const expressEjsLayout = require('express-ejs-layouts')
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require("passport");
+const dotenv = require('dotenv');
+dotenv.config()
 
 //passport config:
 require('./config/passport')(passport)
 //mongoose
-mongoose.connect('mongodb+srv://abhinav:abhinav@cluster0.vucbm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology : true})
-.then(() => console.log('connected,,'))
+mongoose.connect(process.env.DB_URL,{useNewUrlParser: true, useUnifiedTopology : true})
+.then(() => console.log('connected,'))
 .catch((err)=> console.log(err));
 
 //EJS
